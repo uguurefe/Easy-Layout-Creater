@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Easy Layout Creater</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/dragAndDrop.css">
+</head>
+<body>
+	<!-- Grid Modal -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="container">
+	        	<label style="float: left;font-weight: bold;">Kolon: </label>
+	        	<span style="float: left;">&nbsp;&nbsp;col - </span>
+		        <select class="form-control modal-selectbox" id="col-text" style="float: left;">
+		        	<option value="xs">xs</option>
+		        	<option value="sm">sm</option>
+		        	<option value="md">md</option>
+		        	<option value="lg">lg</option>
+		        	<option value="xl">xl</option>
+		        </select>
+		        <span style="float: left;">&nbsp;&nbsp;- </span>
+		        <select class="form-control modal-selectbox" id="col-number">
+		        	<option value="0">0</option>
+		        	<option value="1">1</option>
+		        	<option value="2">2</option>
+		        	<option value="3">3</option>
+		        	<option value="4">4</option>
+		        	<option value="5">5</option>
+		        	<option value="6">6</option>
+		        	<option value="7">7</option>
+		        	<option value="8">8</option>
+		        	<option value="9">9</option>
+		        	<option value="10">10</option>
+		        	<option value="11">11</option>
+		        	<option value="12">12</option>
+		        </select>
+	        </div>
+	        <br>
+	        <div class="container">
+	        	<label style="float: left;font-weight: bold;margin-bottom: unset;">Boş Kolon: </label>
+	        	<span style="float: left;">&nbsp;&nbsp;offset - </span>
+		        <select class="form-control modal-selectbox" id="offset-text" style="float: left;">
+		        	<option value="xs">xs</option>
+		        	<option value="sm">sm</option>
+		        	<option value="md">md</option>
+		        	<option value="lg">lg</option>
+		        	<option value="xl">xl</option>
+		        </select>
+		        <span style="float: left;">&nbsp;&nbsp;- </span>
+		        <select class="form-control modal-selectbox" id="offset-number">
+		        	<option value="0">0</option>
+		        	<option value="1">1</option>
+		        	<option value="2">2</option>
+		        	<option value="3">3</option>
+		        	<option value="4">4</option>
+		        	<option value="5">5</option>
+		        	<option value="6">6</option>
+		        	<option value="7">7</option>
+		        	<option value="8">8</option>
+		        	<option value="9">9</option>
+		        	<option value="10">10</option>
+		        	<option value="11">11</option>
+		        	<option value="12">12</option>
+		        </select>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="grid-create" data-dismiss="modal">Oluştur</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Input Modal -->
+	<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="container">
+	        	<span>Placeholder: </span>
+		        <input type="text" class="form-control" id="input-placeholder">
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="input-create" data-dismiss="modal">Oluştur</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Button Modal -->
+	<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="container">
+	        	<span style="float: left;">Button Type: </span>
+		        <select class="form-control modal-btn" id="btn-type">
+		        	<option value="light">light</option>
+		        	<option value="info">info</option>
+		        	<option value="primary">primary</option>
+		        	<option value="success">success</option>
+		        	<option value="warning">warning</option>
+		        	<option value="danger">danger</option>
+		        </select>
+		        <br>
+		        <span>Button Value: </span>
+		        <input type="text" class="form-control" id="btn-val">
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="btn-create" data-dismiss="modal">Oluştur</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Paragraph Modal -->
+	<div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="container">
+	        	<span style="float: left;">Paragraph Data: </span>
+		        <textarea class="form-control" id="p-data" cols="30" rows="10"></textarea>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="p-create" data-dismiss="modal">Oluştur</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!--Left Sidebar -->
+	<div class="sidebar">
+	    <div class="row siderow"><button class="btn btn-success btn-block" id="save">KAYDET</button></div>
+	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal">Grid Yapısı</button></div>
+	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal2">Input</button></div>
+	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal3">Button</button></div>
+	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal4">Paragraph</button></div>
+	    <div class="row siderow"><button class="btn btn-light btn-block" id="textarea-create">Textarea</button></div>
+	</div>
+
+	<!--Right Sidebar -->
+	<div class="right-sidebar">
+	    <span class='close'>&times;</span>
+	    <button type="button" class="btn btn-light" id="edit-css">Düzenle</button>
+	     <ul class="list-group" id="css-settings-list">
+		  <li class="list-group-item">Arkaplan Rengi(hexcode): <input type="text" class="css-settings jscolor" value="000000" id="bgcolor"></li>
+		  <li class="list-group-item">Yazı Rengi(hexcode): <input type="text" class="css-settings jscolor" value="000000" id="textcolor"></li>
+		  <li class="list-group-item">Çerçeve Yuvarlıklığı(pixel): <input type="number" class="form-control css-settings" id="borderrad"></li>
+		  <li class="list-group-item">Yükseklik(pixel): <input type="number" class="form-control css-settings" id="height"></li>
+		  <li class="list-group-item">Genişlik(pixel): <input type="number" class="form-control css-settings" id="width"></li>
+		  <li class="list-group-item">El ile CSS girin: <textarea class="form-control  css-settings" id="manualcss"></textarea></li>
+		</ul> 
+	</div>
+
+	<!-- Content -->
+	<div class="container">
+		<div class="offset-md-2">
+			<div class="container" id="content">
+			</div>
+		</div>
+	</div>
+	
+	<!-- CDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+	<script src="js/dragAndDrop.js"></script>
+</body>
+</html>

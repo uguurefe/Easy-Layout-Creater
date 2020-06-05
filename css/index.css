@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+body{
+	overflow: hidden;
+}
+#first-card{
+	width: 50%;
+	background: rgb(5,3,125);
+	background: -webkit-linear-gradient(left, rgba(5,3,125,1) 0%, rgba(101,131,227,1) 35%, rgba(255,255,255,1) 100%);
+	background: -o-linear-gradient(left, rgba(5,3,125,1) 0%, rgba(101,131,227,1) 35%, rgba(255,255,255,1) 100%);
+	background: linear-gradient(to right, rgba(5,3,125,1) 0%, rgba(101,131,227,1) 35%, rgba(255,255,255,1) 100%); 
+	background-image: url(../img/drag&drop.png);
+	background-repeat: no-repeat;
+	background-position: 100% 100%; 
+	background-size: cover;
+	cursor: pointer;
+	transition: width 2s;
+	height: 91.1vh;
+}
+#second-card{
+	width: 50%;
+	background: rgb(255,255,255);
+	background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(107,237,104,1) 70%, rgba(1,209,0,1) 100%);
+	background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(107,237,104,1) 70%, rgba(1,209,0,1) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(107,237,104,1) 70%, rgba(1,209,0,1) 100%); 
+	background-image: url(../img/draw.png);
+	background-repeat: no-repeat;
+    background-position: 100% 100%; 
+    background-size: cover;
+	cursor: pointer;
+	transition: width 2s;
+	height: 91.1vh;
+}
+.header{
+	margin-top: 20%;
+	text-shadow: 1px 1px #000;
+	color: #ffffff;
+	font-family: 'Merriweather', serif;
+}
+#h-left{
+	margin-left: 10%;
+}
+#h-right{
+	margin-left: 40%;
+}
+.button-area{
+	z-index: 5;
+	position: absolute;
+	bottom:0;
+	width: 95%;
+	padding-bottom: 3%;
+	padding-top: 5%;
+}
+#btn-left{
+	margin-left: 5%;
+	padding: 10px 30px;
+	border-radius: 20px;
+	float: left;
+}
+#btn-left:hover{background-color: #3de13b;color:white;border-color: #3de13b}
+#btn-right:hover{background-color: #3c4db8;color:white;border-color: #3c4db8}
+#btn-right{
+	margin-left: 5%;
+	padding: 10px 30px;
+	border-radius: 20px;
+	float: right;
+}
+.sub-content{
+	text-shadow: 1px 1px #000;
+	color: #ffffff;
+	font-family: 'Merriweather', serif;
+}
+#hiding-p1{padding: 20px 60px;}
+#hiding-p2{padding: 20px 10px 20px 250px;}

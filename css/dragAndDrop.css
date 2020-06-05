@@ -1,0 +1,109 @@
+body{
+	background-color: #e6e6e6;
+}
+#content{
+	padding-top: 2%;
+}
+.sidebar{
+	width: 200px;
+	background-color: #5e5e5e;
+	height: 100vh;
+	overflow-y: scroll;
+	position: fixed;
+	z-index: 1;
+}
+.right-sidebar{
+	width: 0px;
+	background-color: #fff;
+	height: 100vh;
+	position: fixed;
+	z-index: 1;
+	right: 0;
+	transition: width 1s;
+}
+.siderow{
+	margin-left: 5%;
+	margin-right: 5%;
+	padding-top: 5%;
+}
+/*#content:hover{
+	border: 3px solid green;
+} */
+.modal-selectbox{
+	width: 60px;
+	height: 25px;
+	padding: 0;
+	border: none;
+	padding-left: 12px;
+}
+.modal-selectbox:focus{
+	border-color: unset;
+	outline: 0;
+	box-shadow: unset;
+}
+.modal-btn{
+	width: 100px;
+	height: 25px;
+	padding: 0;
+	border: none;
+	padding-left: 12px;
+}
+.modal-btn:focus{
+	border-color: unset;
+	outline: 0;
+	box-shadow: unset;
+}
+.draggable {
+  touch-action: none;
+  user-select: none;
+  border: 1px solid #ccc;
+}
+.item{
+	position: relative;
+	list-style: none;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+.draggable{
+	margin-right: -5%;
+}
+.dragg-p{
+	margin-right: unset !important;
+}
+.erase{
+	position: absolute;
+	top: -1vh;
+	right: 1vh;
+	color: #939393;
+	cursor: pointer;
+	font-weight: bolder;
+	font-size: 20px;
+}
+.edit{
+	position: absolute;
+	top: 2vh;
+	right: 1vh;
+	color: #939393;
+	cursor: pointer;
+}
+.edit:hover{color:#000000}
+.erase:hover{color:#e32525}
+.close{
+	position: absolute;
+	top: 0vh;
+	left: 1vh;
+	cursor: pointer;
+}
+.openrightside{
+	width: 135vh !important;
+	margin-left: -15vh !important;
+}
+#css-settings-list{
+	margin-top: 2%;
+}
+.css-settings{
+	right: 0;
+}
+#edit-css{
+	margin-left: 35vh;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Easy Layout Creater</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body id="main">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="#">Easy Layout Creater</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	    </ul>
+	  </div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div id="first-card">
+				<h1 class="header" id="h-left">Sürükle-Bırak</h1>
+				<p class="sub-content" id="hiding-p1">Sürükle-bırak sisteminde sadece tag'ları sürükleyerek web siteni oluşturabilirsin.</p>
+			</div>
+			<div id="second-card">
+				<h1 class="header" id="h-right">Şablon Çiz</h1>
+				<p class="sub-content" id="hiding-p2">Bize hayalindeki web sayfasını çiz biz de senin için üretelim.</p>
+			</div>
+		</div>
+		<div class="button-area">
+			<a href="dragAndDrop.html" type="button" class="btn btn-warning" id="btn-left"> Proje Oluştur <i class="fas fa-angle-right"></i></a>
+			<a href="draw.html" type="button" class="btn btn-warning" id="btn-right"> Proje Oluştur <i class="fas fa-angle-right"></i></a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/b4b05ce3d7.js" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			$("#hiding-p1").hide();
+			$("#hiding-p2").hide();
+			$("#first-card").hover(function() {
+				$("#first-card").css('width', '80%');
+				$("#second-card").css('width', '20%');
+				$("#hiding-p1").show(400);
+			}, function() {
+				$("#first-card").css('width', '50%');
+				$("#second-card").css('width', '50%');
+				$("#hiding-p1").hide(400);	
+			});
+			$("#second-card").hover(function() {
+				$("#second-card").css('width', '80%');
+				$("#first-card").css('width', '20%');
+				$("#hiding-p2").show(400);
+			}, function() {
+				$("#first-card").css('width', '50%');
+				$("#second-card").css('width', '50%');
+				$("#hiding-p2").hide(400);
+			});
+		});
+	</script>
+</body>
+</html>
