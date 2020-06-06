@@ -84,6 +84,13 @@
 	        	<span>Placeholder: </span>
 		        <input type="text" class="form-control" id="input-placeholder">
 	        </div>
+	        <br>
+	        <div class="container">
+	        	<label style="float: left;">Hangi grid' e eklenecek: </label>
+		        <select class="form-control grid-list" id="grid-list-input" style="float: left;">
+		        	
+		        </select>
+	        </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-success" id="input-create" data-dismiss="modal">Oluştur</button>
@@ -111,6 +118,13 @@
 		        <span>Button Value: </span>
 		        <input type="text" class="form-control" id="btn-val">
 	        </div>
+	        <br>
+	        <div class="container">
+	        	<label style="float: left;">Hangi grid' e eklenecek: </label>
+		        <select class="form-control grid-list" id="grid-list-btn" style="float: left;">
+		        	
+		        </select>
+	        </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-success" id="btn-create" data-dismiss="modal">Oluştur</button>
@@ -128,6 +142,13 @@
 	        	<span style="float: left;">Paragraph Data: </span>
 		        <textarea class="form-control" id="p-data" cols="30" rows="10"></textarea>
 	        </div>
+	        <br>
+	        <div class="container">
+	        	<label style="float: left;">Hangi grid' e eklenecek: </label>
+		        <select class="form-control grid-list" id="grid-list-p" style="float: left;">
+		        	
+		        </select>
+	        </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-success" id="p-create" data-dismiss="modal">Oluştur</button>
@@ -136,14 +157,34 @@
 	  </div>
 	</div>
 
+	<!-- Textarea Modal -->
+	<div class="modal fade" id="modal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div class="container">
+	        	<label style="float: left;">Hangi grid' e eklenecek: </label>
+		        <select class="form-control grid-list" id="grid-list-textarea" style="float: left;">
+		        	
+		        </select>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="textarea-create" data-dismiss="modal">Oluştur</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<!--Left Sidebar -->
 	<div class="sidebar">
+	    <div class="row siderow"><button class="btn btn-primary btn-block" id="export">DIŞARI ÇIKART</button></div>
 	    <div class="row siderow"><button class="btn btn-success btn-block" id="save">KAYDET</button></div>
 	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal">Grid Yapısı</button></div>
 	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal2">Input</button></div>
 	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal3">Button</button></div>
 	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal4">Paragraph</button></div>
-	    <div class="row siderow"><button class="btn btn-light btn-block" id="textarea-create">Textarea</button></div>
+	    <div class="row siderow"><button class="btn btn-light btn-block" data-toggle="modal" data-target="#modal5">Textarea</button></div>
 	</div>
 
 	<!--Right Sidebar -->
@@ -156,7 +197,7 @@
 		  <li class="list-group-item">Çerçeve Yuvarlıklığı(pixel): <input type="number" class="form-control css-settings" id="borderrad"></li>
 		  <li class="list-group-item">Yükseklik(pixel): <input type="number" class="form-control css-settings" id="height"></li>
 		  <li class="list-group-item">Genişlik(pixel): <input type="number" class="form-control css-settings" id="width"></li>
-		  <li class="list-group-item">El ile CSS girin: <textarea class="form-control  css-settings" id="manualcss"></textarea></li>
+		  <li class="list-group-item">El ile CSS girin: <textarea class="form-control css-settings" id="manualcss" placeholder="CSS kodları arasına ';' koyunuz.."></textarea></li>
 		</ul> 
 	</div>
 
@@ -176,6 +217,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
 	<script src="js/dragAndDrop.js"></script>
 </body>
 </html>

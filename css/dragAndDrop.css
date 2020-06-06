@@ -79,12 +79,18 @@ body{
 	font-weight: bolder;
 	font-size: 20px;
 }
+.grids>.erase{
+	right: 0vh;
+}
 .edit{
 	position: absolute;
 	top: 2vh;
 	right: 1vh;
 	color: #939393;
 	cursor: pointer;
+}
+.grids>.edit{
+	right: 0vh;
 }
 .edit:hover{color:#000000}
 .erase:hover{color:#e32525}
