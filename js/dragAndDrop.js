@@ -14,7 +14,16 @@ var cssprop=[];
 var cssattr=[];
 var container;
 var appendedEl=[];
-var pageData;
+var pageData="";
+var pageDivs=[];
+var pageEl=[];
+var temp;
+var tempArray=[];
+var tempArray2=[];
+var grid0=[];
+var grid1=[];
+var elementLength=0;
+var cssData;
 $(document).ready(function() {
 	/*window.onbeforeunload = function (e) {
         return "Sayfayı yenilerseniz verileriniz silinir. Emin misiniz?";
@@ -53,7 +62,7 @@ $(document).ready(function() {
 		var data=$("#content").html().trim();
 		console.log(data);
 		var timestamp = moment().format("DD.MM.YY HH:mm:ss");
-		localStorage.clear();
+		//localStorage.clear();
 		localStorage.setItem("data", data+"-,-"+timestamp);
 		//console.log(JSON.stringify(localStorage));
 		//console.log($("#content").html());
@@ -74,28 +83,32 @@ $(document).ready(function() {
 
 		$("#content").append("<div id='el"+el+"' class='col-"+col_text+"-"+col_number+" offset-"+offset_text+"-"+offset_number+" draggable grids'><span class='erase'>&times;</span><span class='edit'>&#9660; </span><ul id='item' class='grid"+grid_counter+"'></ul></div>");
 		$(".grid-list").append('<option value="grid'+grid_counter+'">Grid'+grid_counter+'</option>');
-		appendedEl[el]="<div id='el"+el+"' class='grid col-"+col_text+"-"+col_number+" offset-"+offset_text+"-"+offset_number+"'>,</div>";
+		appendedEl[el]="<div id='el"+el+"' class='grid"+parseInt(grid_counter)+" grids col-"+col_text+"-"+col_number+" offset-"+offset_text+"-"+offset_number+"'>";
 		grid_counter++;
 		el++;
-		console.log(appendedEl);
+		//console.log(appendedEl);
 	});
 	$("#input-create").on('click', function(event) {
 		var input_placeholder=$("#input-placeholder").val();
 		var gridNum=$("#grid-list-input").val();
-		console.log(gridNum);
+		//console.log(gridNum);
 		$("."+gridNum).append("<li class='item'><input id='el"+el+"' type='text' class='form-control draggable' placeholder='"+input_placeholder+"'><span class='erase'>&times;</span><span class='edit'>&#9660; </span></li>");
 		$('#item').sortable();
-		appendedEl[el]="<input id='el"+el+"' type='text' class='form-control' placeholder='"+input_placeholder+"'>"
+		var num = gridNum.split("grid");
+		num=parseInt(num[1]);
+		appendedEl[el]="<input id='el"+el+"' type='text' placeholder='"+input_placeholder+"' class='grid"+num+" form-control'>"
 		el++;
 	});
 	$("#btn-create").on('click', function(event) {
 		var btn_type=$("#btn-type").val();
 		var btn_val=$("#btn-val").val();
 		var gridNum=$("#grid-list-btn").val();
-		console.log(gridNum);
+		//console.log(gridNum);
 		$("."+gridNum).append("<li class='item'><button id='el"+el+"' type='button' class='btn btn-"+btn_type+" draggable'>"+btn_val+"</button><span class='erase'>&times;</span><span class='edit'>&#9660; </span></li>");
 		$('#item').sortable();
-		appendedEl[el]="<button id='el"+el+"' type='button' class='btn btn-"+btn_type+"'>"+btn_val+"</button>"
+		var num = gridNum.split("grid");
+		num=parseInt(num[1]);
+		appendedEl[el]="<button id='el"+el+"' type='button' class='grid"+num+" btn btn-"+btn_type+"'>"+btn_val+"</button>"
 		el++;
 	});
 	$("#p-create").on('click', function(event) {
@@ -103,14 +116,18 @@ $(document).ready(function() {
 		var gridNum=$("#grid-list-p").val();
 		$("."+gridNum).append("<li class='item'><div id='el"+el+"' class='card draggable dragg-p'><div class='card-body'><p>"+p_data+"</p></div></div><span class='erase'>&times;</span><span class='edit'>&#9660; </span></li>");
 		$('#item').sortable();
-		appendedEl[el]="<div id='el"+el+"' class='card'><div class='card-body'><p>"+p_data+"</p></div></div>"
+		var num = gridNum.split("grid");
+		num=parseInt(num[1]);
+		appendedEl[el]="<div id='el"+el+"' class='grid"+num+" card'><div class='card-body'><p>"+p_data+"</p></div></div>"
 		el++;
 	});
 	$("#textarea-create").on('click', function(event) {
 		var gridNum=$("#grid-list-textarea").val();
 		$("."+gridNum).append("<li class='item'><textarea id='el"+el+"' cols='30' rows='10' class='form-control draggable'></textarea><span class='erase'>&times;</span><span class='edit'>&#9660; </span></li>");
 		$('#item').sortable();
-		appendedEl[el]="<textarea id='el"+el+"' cols='30' rows='10' class='form-control'></textarea>"
+		var num = gridNum.split("grid");
+		num=parseInt(num[1]);
+		appendedEl[el]="<textarea id='el"+el+"' cols='30' rows='10' class='grid"+num+" form-control'></textarea>"
 		el++;
 	});
 	$("#content").on('click', '.erase', function(event) {
@@ -174,23 +191,76 @@ $(document).ready(function() {
 	$("#export").on('click', function(event) {
 		var data=$("#content").html().trim();
 		var timestamp = moment().format("DD.MM.YY HH:mm:ss");
-		localStorage.clear();
 		localStorage.setItem("data", data+"-,-"+timestamp);
-		console.log(appendedEl);
+
+
+		/* Get fonksiyonu Id=content' i ve içeriğini DOM olarak verir. 
+		1-İLk child DİV.col-md 
+		2-ikincisi UL.grid0 
+		3-üçüncüsü Lİ 
+		4-dördüncüsü APPENDEN ELEMENT */
+		/* Sortable elementleri çekmek için gidilen yol
+		//console.log($("#content").get(0).children[0].children[2].children[0].children[0]);
+		temp=$("#content").get(0).children;
+		//console.log(temp);
+		for (var i = 0; i < temp.length; i++) {
+			pageDivs[i]=temp[i].outerHTML.split("<span")[0];
+		}
+		//console.log(pageDivs);
+		for (var i = 0; i < pageDivs.length; i++) {
+			//console.log($("#content").get(0).children[i]);
+			elementLength=elementLength+$("#content").get(0).children[i].children[2].children.length;
+			tempArray[i]=$("#content").get(0).children[i].children[2].children;
+			//console.log(tempArray);
+		}
+		for (var i = 0; i < tempArray.length; i++) {
+			console.log(tempArray.length);
+			tempArray2[0]=$("#content").get(0).children[i].children[2].children;
+			console.log(tempArray2);
+		}
+		//console.log(pageDivs);
+		*/
+		
+		//console.log(appendedEl);
 		for (var i = 0; i < appendedEl.length; i++) {
-			console.log(appendedEl.length);
-			var temp=appendedEl[i].split("class='");
-			temp=temp[1].split("'");
-			temp=temp[0].split(" ");
-			console.log(temp[0]);
-			if (temp[0]=="grid") {
-				var data=appendedEl[i].split(",");
-				pageData=data[0];
+			//console.log(appendedEl.length);
+			var temp=appendedEl[i].split("class=");
+			//console.log(temp);
+			temp=temp[1].split("'>");
+			//console.log(temp);
+			temp=temp[0].split("'grid");
+			//console.log(temp);
+			temp=temp[1].split(" ");
+			//console.log(temp[0]);
+			if (parseInt(temp[0])==0) {
+				grid0[i]=appendedEl[i];
+				//pageData=data[0];	
+			}
+			if (parseInt(temp[0])==1) {
+				grid1[i]=appendedEl[i];
+				//pageData=data[0];	
 			}
 		}
+		grid0 = grid0.filter(function (el) {
+		  return el != null;
+		});
+		grid1 = grid1.filter(function (el) {
+		  return el != null;
+		});
+		//console.log(grid0);
+		//console.log(grid1);
+		for (var i = 0; i < grid0.length; i++) {
+			pageData=pageData+grid0[i];
+		}
+		pageData=pageData+"</div>";
+		for (var i = 0; i < grid1.length; i++) {
+			pageData=pageData+grid1[i];
+		}
+		pageData=pageData+"</div>";
+		console.log(pageData);
 		
-		//var blob = new Blob(["<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Easy Layout Creater</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script><script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous'></script><script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous'></script><style>body{background-color: #e6e6e6;}</style></head><body><div class='container'>"+data+"</div></body></html>"],{type:"text/plain;charset:utf-8"});
-		//saveAs(blob,"elc.html");
+		var blob = new Blob(["<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Easy Layout Creater</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script><script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous'></script><script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous'></script><style>body{background-color: #e6e6e6;}</style></head><body><div class='container'>"+pageData+"</div></body></html>"],{type:"text/plain;charset:utf-8"});
+		saveAs(blob,"elc.html");
 	});
 });
 
