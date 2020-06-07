@@ -8,6 +8,7 @@ var textcolor;
 var borderrad;
 var height;
 var width;
+var manualCss;
 var manualcss;
 var manualtemp;
 var cssprop=[];
@@ -23,7 +24,8 @@ var tempArray2=[];
 var grid0=[];
 var grid1=[];
 var elementLength=0;
-var cssData;
+var cssData=[];
+var cssCounter=-1;
 $(document).ready(function() {
 	/*window.onbeforeunload = function (e) {
         return "Sayfayı yenilerseniz verileriniz silinir. Emin misiniz?";
@@ -162,8 +164,8 @@ $(document).ready(function() {
 			//console.log(borderrad);
 			height=$("#height").val();
 			width=$("#width").val();
-			manualcss=$("#manualcss").val();
-			manualcss=manualcss.split(";");
+			manualCss=$("#manualcss").val();
+			manualcss=manualCss.split(";");
 			//console.log(manualcss);
 			for (var i = 0; i < manualcss.length-1 ; i++) {
 				manualtemp=manualcss[i].split(":");
@@ -181,18 +183,35 @@ $(document).ready(function() {
 			for (var i = 0; i < cssprop.length; i++) {
 				$("#"+editting).css(cssprop[i],cssattr[i]);
 			}
+			//cssData[cssCounter]={["#"+editting]:"background-color:#"+bgcolor+";color:#"+textcolor+";border-radius:"+borderrad+"px;height:"+height+"px;width:"+width+"px;"+manualCss}
+			//console.log(cssData);
+			$(".right-sidebar").css('width', '0px');
+			$("#content").removeClass('openrightside');
+			$("#bgcolor").val("");
+			$("#textcolor").val("");
+			$("#borderrad").val("");
+			$("#height").val("");
+			$("#width").val("");
+			$("#manualcss").val("");
 		});
-
+		//cssCounter++;
 	});
 	$(".close").on('click', function(event) {
 		$(".right-sidebar").css('width', '0px');
 		$("#content").removeClass('openrightside');
+		$("#bgcolor").val("");
+		$("#textcolor").val("");
+		$("#borderrad").val("");
+		$("#height").val("");
+		$("#width").val("");
+		$("#manualcss").val("");
 	});
 	$("#export").on('click', function(event) {
 		var data=$("#content").html().trim();
 		var timestamp = moment().format("DD.MM.YY HH:mm:ss");
 		localStorage.setItem("data", data+"-,-"+timestamp);
-
+		var page=$("#content").html().trim();
+		console.log(page);
 
 		/* Get fonksiyonu Id=content' i ve içeriğini DOM olarak verir. 
 		1-İLk child DİV.col-md 
@@ -220,7 +239,9 @@ $(document).ready(function() {
 		}
 		//console.log(pageDivs);
 		*/
-		
+
+
+		/*
 		//console.log(appendedEl);
 		for (var i = 0; i < appendedEl.length; i++) {
 			//console.log(appendedEl.length);
@@ -258,8 +279,8 @@ $(document).ready(function() {
 		}
 		pageData=pageData+"</div>";
 		console.log(pageData);
-		
-		var blob = new Blob(["<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Easy Layout Creater</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script><script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous'></script><script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous'></script><style>body{background-color: #e6e6e6;}</style></head><body><div class='container'>"+pageData+"</div></body></html>"],{type:"text/plain;charset:utf-8"});
+		*/
+		var blob = new Blob(["<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Easy Layout Creater</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script><script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous'></script><script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous'></script><style>body{background-color: #e6e6e6;}</style></head><body><div class='container'>"+page+"</div><script>$(document).ready(function() {var dataCount=$('#item').children().length;var arr=[];var j;var page='';for (var i = 0; i < dataCount; i++) {j=i+1;arr[i]=$('#el'+j).get(0).outerHTML;}console.log(arr);for (var i = 0; i < arr.length; i++) {page=page+arr[i];}console.log(page);$('#el0').append(page);$('span').remove();$('ul').remove();$('li').remove();});</script></body></html>"],{type:"text/plain;charset:utf-8"});
 		saveAs(blob,"elc.html");
 	});
 });
